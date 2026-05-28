@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-^!0%=+2c*yrg4g+!$pk*i=^arjq6n&0*gqs5vitv9i#t8xl4n^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['photogallery-amkl.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
