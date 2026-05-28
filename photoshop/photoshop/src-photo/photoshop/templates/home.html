@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photoghor Gallery</title>
+    
+</head>
+<style>
+   
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff;
+}
+
+header {
+    background-color: #111;
+    color: white;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+
+.nav-links {
+    display: none; 
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+
+.nav-links.active {
+    display: block;
+}
+
+
+.hamburger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.bar {
+    width: 30px;
+    height: 2px;
+    background-color: white;
+    transition: 0.3s;
+}
+
+
+.hamburger.open .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+
+.gallery-container {
+    padding: 40px 20px;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.photo-item img {
+    width: 100%;
+    display: block;
+}
+.hero-banner {
+    position: relative;
+    background-image: url('https://www.shutterstock.com/image-photo/photographer-photographic-camera-dslr-photo-260nw-525066541.jpg'); 
+    background-size: cover;
+    background-position: center;
+    height: 180px; /* Adjust height as needed */
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+}
+
+
+.hero-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1;
+}
+
+.banner-container {
+    position: relative;
+    z-index: 2; /* Ensures text stays above the dark overlay */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px; /* Limits content width on large screens */
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+.banner-title {
+    font-size: 42px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.breadcrumbs {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.breadcrumbs a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.breadcrumbs a:hover {
+    opacity: 0.7;
+}
+
+/* Mobile Responsive styling */
+@media (max-width: 768px) {
+    .banner-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding: 0 20px;
+    }
+    
+    .banner-title {
+        font-size: 32px;
+    }
+}
+
+.category {
+    display: flex;
+    justify-content: center;
+    gap: 45px;              
+    margin-top: 60px;        
+    margin-bottom: 60px;     
+    text-align: center;
+}
+
+
+.category a {
+    display: inline-block;
+    text-decoration: none;
+    color: #222;             
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 8px;    
+    border-bottom: 3px solid transparent; 
+    transition: 0.3s ease;
+}
+
+
+.category a:hover, 
+.category a.active {
+    color: #000;
+    border-bottom: 3px solid #f3b14e; 
+}
+
+     .gallery{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(300px,1fr));
+
+    gap:25px;
+
+    padding:30px;
+}
+
+/* CARD */
+
+.card{
+
+    background:#222;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+
+    transition:0.3s;
+}
+
+/* HOVER */
+
+.card:hover{
+
+    transform:translateY(-5px);
+}
+
+/* IMAGE */
+
+.card img{
+
+    width:100%;
+
+    height:280px;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+/* CONTENT */
+
+.content{
+
+    padding:20px;
+
+    text-align:center;
+}
+
+/* TITLE */
+
+.content h3{
+
+    color:#fff;
+
+    margin-bottom:10px;
+
+    font-size:24px;
+}
+
+/* CATEGORY */
+
+.content p{
+
+    color:#aaa;
+
+    font-size:16px;
+}
+</style>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">PHOTOGHOR</div>
+            
+            <nav id="nav-menu" class="nav-links">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">PHOTO GALLERY</a></li>
+                    <li><a href="#">2 COLUMN GALLERY</a></li>
+                    <li><a href="#">4 COLUMN GALLERY</a></li>
+                    <li><a href="#">PHOTO DETAILS</a></li>
+                </ul>
+            </nav>
+
+            <div id="menu-toggle" class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+  <header class="hero-banner">
+    <div class="banner-container">
+        <h1 class="banner-title">PHOTO GALLERY</h1>
+        <nav class="breadcrumbs">
+            <a href="{% url 'index' %}">HOME</a> /
+            <span>PHOTO GALLERY</span>
+        </nav>
+    </div>
+  </header>
+
+
+    <div class="category">
+
+        <!-- DEFAULT ALL -->
+
+        <a href="/home/">
+            All
+        </a>
+
+        <a href="/home/?category=Graphic">
+            Graphic
+        </a>
+
+        <a href="/home/?category=Photoshop">
+            Photoshop
+        </a>
+
+        <a href="/home/?category=Design">
+            Design
+        </a>
+
+    </div>
+
+    <!-- GALLERY -->
+
+<div class="gallery">
+
+    {% for photo in photos %}
+
+    <div class="card">
+
+        <a href="{% url 'photo_detail' photo.id %}">
+            <img src="{{ photo.image.url }}" alt="">
+        </a>
+
+        <div class="content">
+            <h3>{{ photo.title }}</h3>
+            <p>{{ photo.category }}</p>
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    menuToggle.addEventListener('click', () => {
+        // Toggle the visibility of the menu
+        navMenu.classList.toggle('active');
+        
+        // Toggle the animation of the hamburger icon to an "X"
+        menuToggle.classList.toggle('open');
+    });
+});
+    </script>
+</body>
+</html>

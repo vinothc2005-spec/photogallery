@@ -1,0 +1,680 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{{ photo.title }} | Photoghor</title>
+
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --black:#111;
+    --white:#fff;
+    --border:#e5e5e5;
+    --grey:#777;
+}
+
+body{
+    font-family:'Barlow',sans-serif;
+    background:#fff;
+    color:#333;
+    overflow-x:hidden;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    width:100%;
+    height:70px;
+    background:#111;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 50px;
+
+    position:sticky;
+    top:0;
+    z-index:999;
+}
+
+.logo{
+    color:#fff;
+    text-decoration:none;
+
+    font-size:28px;
+    font-weight:700;
+
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    font-family:'Barlow Condensed',sans-serif;
+}
+
+.hamburger{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+}
+
+.hamburger span{
+    width:26px;
+    height:2px;
+    background:#fff;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    height:260px;
+
+    background:
+    linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+    url("{% static 'images/1920.jpg' %}");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 60px;
+}
+
+.hero-content{
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.hero-title{
+    color:#fff;
+
+    font-size:52px;
+    font-weight:700;
+
+    text-transform:uppercase;
+    letter-spacing:3px;
+
+    font-family:'Barlow Condensed',sans-serif;
+}
+
+.breadcrumb{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    color:#fff;
+
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+
+    font-family:'Barlow Condensed',sans-serif;
+}
+
+.breadcrumb a{
+    color:#fff;
+    text-decoration:none;
+}
+
+/* ================= IMAGE ================= */
+
+.photo-wrap{
+    padding:60px;
+}
+
+.photo-wrap img{
+    width:100%;
+    height:600px;
+    object-fit:cover;
+    display:block;
+    border-radius:10px;
+}
+
+/* ================= INFO SECTION ================= */
+
+.info-section{
+    padding:0 60px 80px;
+
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:60px;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.sidebar-row{
+    display:flex;
+    gap:15px;
+
+    padding:22px;
+
+    border-bottom:1px solid var(--border);
+}
+
+.sidebar-row:last-child{
+    border-bottom:none;
+}
+
+.sidebar-row i{
+    color:#888;
+    margin-top:5px;
+}
+
+.sidebar-label{
+    font-size:14px;
+    font-weight:600;
+
+    text-transform:uppercase;
+    letter-spacing:1px;
+
+    color:#666;
+
+    font-family:'Barlow Condensed',sans-serif;
+}
+
+.sidebar-value{
+    margin-top:5px;
+}
+
+/* ================= CONTENT ================= */
+
+.photo-info h2{
+    font-size:42px;
+
+    text-transform:uppercase;
+    letter-spacing:2px;
+
+    margin-bottom:25px;
+    padding-bottom:15px;
+
+    border-bottom:1px solid var(--border);
+
+    font-family:'Barlow Condensed',sans-serif;
+}
+
+.photo-name{
+    font-size:24px;
+    font-weight:600;
+
+    margin-bottom:20px;
+
+    text-transform:uppercase;
+
+    font-family:'Barlow Condensed',sans-serif;
+}
+
+.photo-info p{
+    color:#555;
+    line-height:1.9;
+}
+
+/* ================= SHARE ================= */
+
+.share-row{
+    margin-top:35px;
+    padding-top:30px;
+
+    border-top:1px solid var(--border);
+
+    display:flex;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.share-label{
+    font-size:16px;
+    font-weight:600;
+
+    text-transform:uppercase;
+    letter-spacing:1px;
+
+    font-family:'Barlow Condensed',sans-serif;
+}
+
+.share-icons{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.share-icons a{
+    width:42px;
+    height:42px;
+
+    border:1px solid var(--border);
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#555;
+    text-decoration:none;
+
+    transition:.3s;
+}
+
+.share-icons a:hover{
+    background:#111;
+    color:#fff;
+    border-color:#111;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#111;
+
+    padding:35px 60px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.footer-links{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.footer-links a{
+    color:#aaa;
+    text-decoration:none;
+}
+
+.footer-links a:hover{
+    color:#fff;
+}
+
+.footer-copy{
+    color:#888;
+    font-size:14px;
+}
+
+.footer-copy strong{
+    color:#fff;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+    nav{
+        padding:0 25px;
+    }
+
+    .hero{
+        height:220px;
+        padding:0 25px;
+    }
+
+    .hero-content{
+        flex-direction:column;
+        align-items:flex-start;
+        justify-content:center;
+        gap:10px;
+    }
+
+    .hero-title{
+        font-size:38px;
+    }
+
+    .photo-wrap{
+        padding:30px 25px;
+    }
+
+    .photo-wrap img{
+        height:420px;
+    }
+
+    .info-section{
+        grid-template-columns:1fr;
+        padding:0 25px 60px;
+        gap:35px;
+    }
+
+    footer{
+        padding:30px 25px;
+    }
+}
+
+@media(max-width:600px){
+
+    nav{
+        height:65px;
+        padding:0 15px;
+    }
+
+    .logo{
+        font-size:22px;
+    }
+
+    .hero{
+        height:180px;
+        padding:0 15px;
+    }
+
+    .hero-title{
+        font-size:28px;
+    }
+
+    .breadcrumb{
+        display:none;
+    }
+
+    .photo-wrap{
+        padding:20px 15px;
+    }
+
+    .photo-wrap img{
+        height:250px;
+    }
+
+    .info-section{
+        padding:0 15px 50px;
+    }
+
+    .sidebar-row{
+        padding:18px 15px;
+    }
+
+    .photo-info h2{
+        font-size:28px;
+    }
+
+    .photo-name{
+        font-size:18px;
+    }
+
+    .photo-info p{
+        font-size:15px;
+    }
+
+    .share-icons a{
+        width:38px;
+        height:38px;
+        font-size:14px;
+    }
+
+    footer{
+        padding:25px 15px;
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <a href="{% url 'home' %}" class="logo">
+        Photoghor
+    </a>
+
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1 class="hero-title">
+            Photo Details
+        </h1>
+
+        <div class="breadcrumb">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <span>/</span>
+
+            <a href="#">
+                Photo Gallery
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= PHOTO ================= -->
+
+<div class="photo-wrap">
+
+    <img src="{{ photo.image.url }}" alt="{{ photo.title }}">
+
+</div>
+
+<!-- ================= INFO ================= -->
+
+<div class="info-section">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-row">
+
+            <i class="fas fa-user"></i>
+
+            <div>
+
+                <div class="sidebar-label">
+                    Created By
+                </div>
+
+                <div class="sidebar-value">
+                    {{ photo.author|default:"Akcent Chester" }}
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="sidebar-row">
+
+            <i class="fas fa-calendar"></i>
+
+            <div>
+
+                <div class="sidebar-label">
+                    Completed On
+                </div>
+
+                <div class="sidebar-value">
+                    {{ photo.date|date:"d M Y"|default:"20 Jan 2023" }}
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="sidebar-row">
+
+            <i class="fas fa-code"></i>
+
+            <div>
+
+                <div class="sidebar-label">
+                    Skills
+                </div>
+
+                <div class="sidebar-value">
+                    HTML5 / CSS3 / Django
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+    <!-- CONTENT -->
+
+    <article class="photo-info">
+
+        <h2>
+            Photo Info
+        </h2>
+
+        <p class="photo-name">
+            {{ photo.title }}
+        </p>
+
+        <p>
+            {{ photo.description }}
+        </p>
+
+        <!-- ================= SHARE ================= -->
+
+        <div class="share-row">
+
+            <span class="share-label">
+                Share :
+            </span>
+
+            <div class="share-icons">
+
+                <!-- FACEBOOK -->
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"
+                   target="_blank">
+
+                    <i class="fab fa-facebook-f"></i>
+
+                </a>
+
+                <!-- TWITTER -->
+                <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ photo.title }}"
+                   target="_blank">
+
+                    <i class="fab fa-twitter"></i>
+
+                </a>
+
+                <!-- WHATSAPP -->
+                <a href="https://web.whatsapp.com/send?text={{ request.build_absolute_uri }}"
+                   target="_blank">
+
+                    <i class="fab fa-whatsapp"></i>
+
+                </a>
+
+                <!-- LINKEDIN -->
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}"
+                   target="_blank">
+
+                    <i class="fab fa-linkedin-in"></i>
+
+                </a>
+
+                <!-- COPY LINK -->
+                <a href="javascript:void(0);" onclick="copyLink()">
+
+                    <i class="fas fa-link"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </article>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-links">
+
+        <a href="https://www.facebook.com/" target="_blank">
+            Facebook
+        </a>
+
+        <a href="https://twitter.com/" target="_blank">
+            Twitter
+        </a>
+
+        <a href="https://www.instagram.com/" target="_blank">
+            Instagram
+        </a>
+
+        <a href="https://www.linkedin.com/" target="_blank">
+            Linkedin
+        </a>
+
+    </div>
+
+    <p class="footer-copy">
+        Copyright © <strong>Photoghor</strong> 2026. All Rights Reserved.
+    </p>
+
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+
+<script>
+
+function copyLink(){
+
+    navigator.clipboard.writeText(window.location.href);
+
+    alert("Link Copied!");
+
+}
+
+</script>
+
+</body>
+</html>

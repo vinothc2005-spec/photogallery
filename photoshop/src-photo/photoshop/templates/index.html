@@ -1,0 +1,118 @@
+<!-- index.html -->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:flex-end;
+            align-items:center;
+            padding: 120px;
+
+            /* BACKGROUND IMAGE */
+
+            background-image:url("{% static 'images/1920.jpg' %}");
+            background-size:cover;
+            background-position:center;
+            background-repeat:no-repeat;
+        }
+
+        .box{
+            width:350px;
+            background:rgba(0,0,0,0.7);
+            padding:40px;
+            border-radius:15px;
+            backdrop-filter:blur(5px);
+        }
+
+        h1{
+            color:white;
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        input{
+            width:100%;
+            padding:14px;
+            margin-bottom:20px;
+            border:none;
+            border-radius:10px;
+            font-size:16px;
+        }
+
+        .login-btn{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:10px;
+            background:orange;
+            color:white;
+            font-size:16px;
+            cursor:pointer;
+            margin-bottom:15px;
+        }
+
+        .register-btn{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:10px;
+            background:#0633e6;
+            color:white;
+            font-size:16px;
+            cursor:pointer;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="box">
+
+        <h1>Login</h1>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <input type="text"
+                   name="username"
+                   placeholder="Enter Username">
+
+            <input type="password"
+                   name="password"
+                   placeholder="Enter Password">
+
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+        </form>
+
+        <a href="{% url 'register' %}">
+            <button type="button" class="register-btn">
+                Register
+            </button>
+        </a>
+
+    </div>
+
+</body>
+</html>

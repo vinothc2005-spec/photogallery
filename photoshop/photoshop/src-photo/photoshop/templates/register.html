@@ -1,0 +1,170 @@
+<!-- register.html -->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            background-image:url('https://plus.unsplash.com/premium_photo-1720192861639-1524439fc166?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+
+            background-size:cover;
+            background-position:center;
+            background-repeat:no-repeat;
+        }
+
+        /* GLASS EFFECT BOX */
+
+        .box{
+            width:380px;
+
+            background:rgba(255,255,255,0.10);
+
+            border:1px solid rgba(255,255,255,0.20);
+
+            backdrop-filter:blur(12px);
+
+            padding:40px;
+
+            border-radius:20px;
+
+            box-shadow:0 0 25px rgba(0,0,0,0.3);
+        }
+
+        h1{
+            color:white;
+            text-align:center;
+            margin-bottom:30px;
+            font-size:35px;
+        }
+
+        input{
+            width:100%;
+            padding:15px;
+
+            margin-bottom:20px;
+
+            border:none;
+            outline:none;
+
+            border-radius:12px;
+
+            background:rgba(255,255,255,0.15);
+
+            color:white;
+            font-size:16px;
+        }
+
+        input::placeholder{
+            color:#ddd;
+        }
+
+        .register-btn{
+            width:100%;
+            padding:15px;
+
+            border:none;
+            border-radius:12px;
+
+            background:rgba(255,255,255,0.20);
+
+            color:white;
+            font-size:16px;
+            font-weight:bold;
+
+            cursor:pointer;
+
+            margin-bottom:15px;
+
+            transition:0.3s;
+        }
+
+        .register-btn:hover{
+            background:rgba(255,255,255,0.35);
+        }
+
+        .back-btn{
+            width:100%;
+            padding:15px;
+
+            border:none;
+            border-radius:12px;
+
+            background:rgba(0,0,0,0.35);
+
+            color:white;
+            font-size:16px;
+            font-weight:bold;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+        .back-btn:hover{
+            background:rgba(0,0,0,0.55);
+        }
+
+        a{
+            text-decoration:none;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="box">
+
+        <h1>Register</h1>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <input type="text"
+                   name="username"
+                   placeholder="Create Username"
+                   required>
+
+            <input type="password"
+                   name="password"
+                   placeholder="Create Password"
+                   required>
+
+            <button type="submit" class="register-btn">
+                Register
+            </button>
+
+        </form>
+
+        <!-- BACK BUTTON -->
+
+        <a href="{% url 'index' %}">
+            <button type="button" class="back-btn">
+                ← Back
+            </button>
+        </a>
+
+    </div>
+
+</body>
+</html>
